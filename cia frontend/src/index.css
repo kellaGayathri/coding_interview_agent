@@ -1,0 +1,418 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap');
+@import 'tailwindcss';
+
+:root {
+  font-family: 'Manrope', 'Segoe UI', sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --auth-grid-color: rgba(148, 163, 184, 0.12);
+  --brand-cyan: #22d3ee;
+  --brand-indigo: #818cf8;
+  --brand-rose: #f472b6;
+  --surface-1: rgba(15, 23, 42, 0.65);
+  --surface-2: rgba(2, 6, 23, 0.75);
+  --surface-3: rgba(30, 41, 59, 0.55);
+  --glow-soft: 0 20px 50px rgba(2, 6, 23, 0.6);
+  --glow-strong: 0 24px 80px rgba(14, 165, 233, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: radial-gradient(circle at top right, #1e293b 0%, #020617 45%);
+  color: #e2e8f0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.font-title {
+  font-family: 'Space Grotesk', 'Manrope', sans-serif;
+}
+
+.auth-grid-pattern {
+  background-image:
+    linear-gradient(to right, var(--auth-grid-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--auth-grid-color) 1px, transparent 1px),
+    radial-gradient(circle at top, rgba(56, 189, 248, 0.1), transparent 60%);
+  background-size:
+    42px 42px,
+    42px 42px,
+    100% 100%;
+  mask-image: radial-gradient(circle at center, black 25%, transparent 95%);
+}
+
+/* ===== Visual System ===== */
+.page-shell {
+  position: relative;
+  min-height: 100vh;
+  color: #e2e8f0;
+  background: radial-gradient(circle at 12% 18%, rgba(14, 165, 233, 0.12), transparent 40%),
+    radial-gradient(circle at 88% 20%, rgba(129, 140, 248, 0.14), transparent 35%),
+    radial-gradient(circle at 70% 80%, rgba(244, 114, 182, 0.1), transparent 40%),
+    #020617;
+  overflow-x: hidden;
+}
+
+.page-aurora {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(120deg, rgba(14, 165, 233, 0.08), rgba(129, 140, 248, 0.08), rgba(244, 114, 182, 0.08));
+  mix-blend-mode: screen;
+  opacity: 0.6;
+  animation: auroraShift 18s ease-in-out infinite;
+}
+
+.page-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0.3;
+  mask-image: radial-gradient(circle at 50% 30%, black 20%, transparent 75%);
+}
+
+.glass-panel {
+  background: var(--surface-1);
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  box-shadow: var(--glow-soft);
+  backdrop-filter: blur(18px);
+}
+
+.glass-panel-strong {
+  background: var(--surface-2);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  box-shadow: var(--glow-strong);
+  backdrop-filter: blur(20px);
+}
+
+.glow-ring {
+  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.3), 0 0 30px rgba(56, 189, 248, 0.2);
+}
+
+.headline-gradient {
+  background: linear-gradient(110deg, #f8fafc, #bae6fd, #c7d2fe);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  padding: 4px 10px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(226, 232, 240, 0.8);
+  background: rgba(15, 23, 42, 0.6);
+}
+
+@keyframes auroraShift {
+  0% {
+    transform: translate3d(-2%, -2%, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(2%, 3%, 0) scale(1.03);
+  }
+  100% {
+    transform: translate3d(-2%, -2%, 0) scale(1);
+  }
+}
+/* ===== Animations ===== */
+
+/* Fade in animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Scale animations */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    max-height: 500px;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    max-height: 500px;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    max-height: 0;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(56, 189, 248, 0.6);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Utility animation classes */
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-fadeInDown {
+  animation: fadeInDown 0.6s ease-out;
+}
+
+.animate-fadeInLeft {
+  animation: fadeInLeft 0.6s ease-out;
+}
+
+.animate-fadeInRight {
+  animation: fadeInRight 0.6s ease-out;
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.4s ease-out;
+}
+
+.animate-slideDown {
+  animation: slideDown 0.3s ease-out;
+}
+
+.animate-slideUp {
+  animation: slideUp 0.3s ease-out;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Hover effects */
+.hover-lift {
+  transition: all 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+}
+
+.hover-glow {
+  transition: all 0.3s ease;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 30px rgba(56, 189, 248, 0.4);
+}
+
+.hover-scale {
+  transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.active-scale {
+  transition: transform 0.2s ease;
+}
+
+.active-scale:active {
+  transform: scale(0.98);
+}
+
+/* Smooth transitions */
+.transition-smooth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition-fast {
+  transition: all 0.15s ease;
+}
+
+/* Button animations */
+.btn-animate {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-animate::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  transition: left 0.5s ease;
+}
+
+.btn-animate:hover::before {
+  left: 100%;
+}
+
+/* Card entrance animation with stagger */
+.card-stagger {
+  animation: fadeInUp 0.5s ease-out backwards;
+}
+
+.card-stagger:nth-child(1) { animation-delay: 0.1s; }
+.card-stagger:nth-child(2) { animation-delay: 0.2s; }
+.card-stagger:nth-child(3) { animation-delay: 0.3s; }
+.card-stagger:nth-child(4) { animation-delay: 0.4s; }
+.card-stagger:nth-child(5) { animation-delay: 0.5s; }
+
+/* Loading animation */
+.loading-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Success checkmark animation */
+@keyframes checkmark {
+  0% {
+    stroke-dashoffset: 50;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
