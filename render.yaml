@@ -1,0 +1,50 @@
+services:
+  - type: web
+    name: cia-backend
+    runtime: python
+    rootDir: cia backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    plan: free
+    envVars:
+      - key: APP_NAME
+        value: Coding Interview Agent Backend
+      - key: FRONTEND_ORIGIN
+        sync: false   # Set this to your Vercel frontend URL after deployment
+      - key: DATABASE_URL
+        fromDatabase:
+          name: cia-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_ALGORITHM
+        value: HS256
+      - key: JWT_EXPIRE_MINUTES
+        value: "60"
+      - key: JUDGE0_API_URL
+        value: https://ce.judge0.com
+      - key: JUDGE0_API_KEY
+        sync: false   # Add your RapidAPI key in Render dashboard
+      - key: JUDGE0_API_HOST
+        value: judge0-ce.p.rapidapi.com
+      - key: JUDGE0_POLL_INTERVAL_SECONDS
+        value: "1.0"
+      - key: JUDGE0_MAX_POLL_ATTEMPTS
+        value: "10"
+      - key: HUGGINGFACE_API_TOKEN
+        sync: false   # Add your HuggingFace token in Render dashboard
+      - key: REPO_ID
+        value: Qwen/Qwen3-Coder-Next
+      - key: HF_API_BASE_URL
+        value: https://api-inference.huggingface.co
+      - key: HF_MAX_NEW_TOKENS
+        value: "1024"
+      - key: HF_TEMPERATURE
+        value: "0.6"
+      - key: HF_TIMEOUT_SECONDS
+        value: "120"
+
+databases:
+  - name: cia-db
+    databaseName: coding_interview_agent
+    plan: free
